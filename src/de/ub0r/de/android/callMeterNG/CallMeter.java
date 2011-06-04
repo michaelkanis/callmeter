@@ -115,9 +115,6 @@ public class CallMeter extends Activity {
 		} else {
 			((TextView) this.findViewById(R.id.data_)).setText(R.string.data_);
 		}
-		if (!prefsNoAds) {
-			Ads.loadAd(this, R.id.ad, AD_UNITID, AD_KEYWORDS);
-		}
 	}
 
 	/**

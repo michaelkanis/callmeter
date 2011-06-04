@@ -23,13 +23,13 @@ import java.util.Calendar;
 import java.util.HashMap;
 import java.util.HashSet;
 
+import android.app.AlertDialog.Builder;
 import android.app.DatePickerDialog;
+import android.app.DatePickerDialog.OnDateSetListener;
 import android.app.Dialog;
 import android.app.ListActivity;
 import android.app.ProgressDialog;
 import android.app.TimePickerDialog;
-import android.app.AlertDialog.Builder;
-import android.app.DatePickerDialog.OnDateSetListener;
 import android.app.TimePickerDialog.OnTimeSetListener;
 import android.content.ActivityNotFoundException;
 import android.content.ContentResolver;
@@ -52,18 +52,17 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.Window;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup.LayoutParams;
+import android.view.Window;
 import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemLongClickListener;
 import android.widget.DatePicker;
 import android.widget.ProgressBar;
 import android.widget.ResourceCursorAdapter;
 import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
-import android.widget.AdapterView.OnItemLongClickListener;
-import de.ub0r.android.callmeter.Ads;
 import de.ub0r.android.callmeter.CallMeter;
 import de.ub0r.android.callmeter.R;
 import de.ub0r.android.callmeter.data.DataProvider;
@@ -435,13 +434,13 @@ public class Plans extends ListActivity implements OnClickListener,
 				} else {
 					this.billday = -1;
 					this.billdayc = null;
-					this.ppid = DataProvider.Plans.getParent(context
-							.getContentResolver(), this.id);
+					this.ppid = DataProvider.Plans.getParent(
+							context.getContentResolver(), this.id);
 					this.limittype = cursor
 							.getInt(DataProvider.Plans.INDEX_LIMIT_TYPE);
 					this.limit = DataProvider.Plans.getLimit(this.type,
-							this.limittype, cursor
-									.getLong(DataProvider.Plans.INDEX_LIMIT));
+							this.limittype,
+							cursor.getLong(DataProvider.Plans.INDEX_LIMIT));
 					this.cpp = cursor
 							.getFloat(DataProvider.Plans.INDEX_COST_PER_PLAN);
 					final String s = cursor
@@ -953,7 +952,7 @@ public class Plans extends ListActivity implements OnClickListener,
 					return null;
 				}
 			} // .
-					.execute((Void) null);
+			.execute((Void) null);
 		}
 
 		/**
@@ -1018,9 +1017,7 @@ public class Plans extends ListActivity implements OnClickListener,
 				ret.append(delimiter);
 
 				// amount all time
-				ret
-						.append(formatAmount(p.type, allTime.billedAmount,
-								showHours));
+				ret.append(formatAmount(p.type, allTime.billedAmount, showHours));
 				// count all time
 				if (p.type == DataProvider.TYPE_CALL) {
 					ret.append(" (" + allTime.count + ")");
@@ -1372,17 +1369,12 @@ public class Plans extends ListActivity implements OnClickListener,
 		}
 		// reload plan configuration
 		this.getNowFromIntent(this.getIntent(), false);
-		this.adapter.reloadPlans(this.getContentResolver(), this.adapter
-				.getCursor());
+		this.adapter.reloadPlans(this.getContentResolver(),
+				this.adapter.getCursor());
 		// start LogRunner
 		LogRunnerService.update(this, LogRunnerReceiver.ACTION_FORCE_UPDATE);
 		// schedule next update
 		LogRunnerReceiver.schedNext(this);
-		if (this.getListView().getCount() > 0 && !prefsNoAds) {
-			Ads.loadAd(this, R.id.ad, AD_UNITID, AD_KEYWORDS);
-		} else {
-			this.findViewById(R.id.ad).setVisibility(View.GONE);
-		}
 	}
 
 	/**
@@ -1480,8 +1472,8 @@ public class Plans extends ListActivity implements OnClickListener,
 			if (cal == null) {
 				cal = Calendar.getInstance();
 			}
-			return new DatePickerDialog(this, this, cal.get(Calendar.YEAR), cal
-					.get(Calendar.MONTH), cal.get(Calendar.DAY_OF_MONTH));
+			return new DatePickerDialog(this, this, cal.get(Calendar.YEAR),
+					cal.get(Calendar.MONTH), cal.get(Calendar.DAY_OF_MONTH));
 		case DIALOG_SHOW_TIME:
 			cal = this.adapter.now;
 			int h;
@@ -1616,8 +1608,8 @@ public class Plans extends ListActivity implements OnClickListener,
 		if (cal == null) {
 			cal = Calendar.getInstance();
 		}
-		cal.set(cal.get(Calendar.YEAR), cal.get(Calendar.MONTH), cal
-				.get(Calendar.DAY_OF_MONTH), hourOfDay, minute);
+		cal.set(cal.get(Calendar.YEAR), cal.get(Calendar.MONTH),
+				cal.get(Calendar.DAY_OF_MONTH), hourOfDay, minute);
 		this.setNow(cal.getTimeInMillis(), true, true);
 	}
 }

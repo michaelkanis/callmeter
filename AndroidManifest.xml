@@ -54,9 +54,6 @@
 				<action android:name="android.provider.Telephony.SMS_RECEIVED" />
 			</intent-filter>
 		</receiver>
-		<activity android:name="com.google.ads.AdActivity"
-			android:theme="@android:style/Theme.NoTitleBar.Fullscreen"
-			android:configChanges="keyboard|keyboardHidden|orientation" />
 	</application>
 	<uses-sdk android:minSdkVersion="3" android:targetSdkVersion="10" />
 	<supports-screens android:smallScreens="true"

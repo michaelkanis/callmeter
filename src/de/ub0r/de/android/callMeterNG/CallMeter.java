@@ -18,8 +18,6 @@
  */
 package de.ub0r.de.android.callMeterNG;
 
-import java.util.HashSet;
-
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -41,30 +39,6 @@ import de.ub0r.android.lib.Utils;
 public class CallMeter extends Activity {
 	/** Tag for output. */
 	public static final String TAG = "main";
-
-	/** Ad's unit id. */
-	private static final String AD_UNITID = "a14c74c2173de45";
-
-	/** Ad's keywords. */
-	private static final HashSet<String> AD_KEYWORDS = new HashSet<String>();
-	static {
-		AD_KEYWORDS.add("android");
-		AD_KEYWORDS.add("mobile");
-		AD_KEYWORDS.add("handy");
-		AD_KEYWORDS.add("cellphone");
-		AD_KEYWORDS.add("google");
-		AD_KEYWORDS.add("htc");
-		AD_KEYWORDS.add("samsung");
-		AD_KEYWORDS.add("motorola");
-		AD_KEYWORDS.add("market");
-		AD_KEYWORDS.add("app");
-		AD_KEYWORDS.add("report");
-		AD_KEYWORDS.add("calls");
-		AD_KEYWORDS.add("game");
-		AD_KEYWORDS.add("traffic");
-		AD_KEYWORDS.add("data");
-		AD_KEYWORDS.add("amazon");
-	}
 
 	/** 100. */
 	static final int HUNDRET = 100;
@@ -124,9 +98,6 @@ public class CallMeter extends Activity {
 	public final boolean onCreateOptionsMenu(final Menu menu) {
 		MenuInflater inflater = this.getMenuInflater();
 		inflater.inflate(R.menu.menu, menu);
-		if (prefsNoAds) {
-			menu.removeItem(R.id.item_donate);
-		}
 		return true;
 	}
 
@@ -138,9 +109,6 @@ public class CallMeter extends Activity {
 		switch (item.getItemId()) {
 		case R.id.item_settings: // start settings activity
 			this.startActivity(new Intent(this, Preferences.class));
-			return true;
-		case R.id.item_donate:
-			this.startActivity(new Intent(this, DonationHelper.class));
 			return true;
 		default:
 			return false;

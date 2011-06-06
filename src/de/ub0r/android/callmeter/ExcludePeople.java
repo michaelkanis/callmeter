@@ -1,4 +1,4 @@
-package de.ub0r.de.android.callMeterNG;
+package de.ub0r.android.callmeter;
 
 import java.util.ArrayList;
 
@@ -12,9 +12,9 @@ import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
-import android.widget.AdapterView.OnItemClickListener;
 import de.ub0r.android.lib.Log;
 import de.ub0r.android.lib.apis.ContactsWrapper;
 
@@ -231,9 +231,7 @@ public class ExcludePeople extends ListActivity implements OnItemClickListener {
 						final AlertDialog.Builder builder2 = // .
 						new AlertDialog.Builder(ExcludePeople.this);
 						final EditText et = new EditText(ExcludePeople.this);
-						et
-								.setText(prefsExcludePeople.get(position)
-										.getNumber());
+						et.setText(prefsExcludePeople.get(position).getNumber());
 						builder2.setView(et);
 						builder2.setTitle(R.string.exclude_people_edit);
 						builder2.setCancelable(true);

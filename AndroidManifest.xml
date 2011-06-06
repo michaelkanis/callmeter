@@ -18,9 +18,9 @@
 		not, see <http://www.gnu.org/licenses/>.
 	-->
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-	package="de.ub0r.de.android.callMeterNG" android:versionName="2.3.17.5"
+	package="de.ub0r.android.callmeter" android:versionName="2.3.17.5"
 	android:versionCode="2053" android:installLocation="auto">
-	<application android:name=".CallMeterApp" android:icon="@drawable/sym_call_outgoing"
+	<application android:name="de.ub0r.android.callmeter.CallMeterApp" android:icon="@drawable/sym_call_outgoing"
 		android:label="@string/app_name">
 		<activity android:name="CallMeter" android:label="@string/app_name"
 			android:configChanges="orientation|keyboardHidden"
@@ -34,18 +34,10 @@
 		<activity android:name="ExcludePeople" />
 		<activity android:name="ResetData" />
 		<activity android:name="About" />
-		<activity android:name="de.ub0r.android.lib.DonationHelper"
-			android:configChanges="orientation|keyboardHidden"
-			android:windowSoftInputMode="adjustResize" />
 		<activity android:name="de.ub0r.android.lib.Changelog"
 			android:configChanges="orientation|keyboardHidden"
 			android:windowSoftInputMode="adjustResize" />
-		<receiver android:name="de.ub0r.android.lib.DonationReceiver">
-			<intent-filter>
-				<action android:name="de.ub0r.android.donator.REGISTERED" />
-			</intent-filter>
-		</receiver>
-		<receiver android:name="CMBroadcastReceiver">
+		<receiver android:name="de.ub0r.android.callmeter.CMBroadcastReceiver">
 			<intent-filter>
 				<action android:name="android.intent.action.BOOT_COMPLETED" />
 				<category android:name="android.intent.category.HOME" />

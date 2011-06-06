@@ -16,7 +16,7 @@
  * You should have received a copy of the GNU General Public License along with
  * this program; If not, see <http://www.gnu.org/licenses/>.
  */
-package de.ub0r.de.android.callMeterNG;
+package de.ub0r.android.callmeter;
 
 import java.util.Calendar;
 import java.util.Currency;
@@ -35,10 +35,10 @@ import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
+import de.ub0r.android.callmeter.ExcludePeople.ExcludedPerson;
 import de.ub0r.android.lib.Log;
 import de.ub0r.android.lib.Utils;
 import de.ub0r.android.lib.apis.TelephonyWrapper;
-import de.ub0r.de.android.callMeterNG.ExcludePeople.ExcludedPerson;
 
 /**
  * AsyncTask to handle calcualtions in background.
@@ -579,9 +579,9 @@ class Updater extends AsyncTask<Void, Void, Integer[]> {
 
 			this.pbCalls1.setProgress(0);
 			this.pbCalls1.setIndeterminate(false);
-			int v = setVisableIfSet(this.prefs.getString(PREFS_PLAN1_FREEMIN,
-					null), this.prefs.getBoolean(PREFS_PLAN1_T_FREE_CALLS,
-					false));
+			int v = setVisableIfSet(
+					this.prefs.getString(PREFS_PLAN1_FREEMIN, null),
+					this.prefs.getBoolean(PREFS_PLAN1_T_FREE_CALLS, false));
 			this.pbCalls1.setVisibility(v);
 			if (this.plansMergeCalls) {
 				this.callmeter.findViewById(R.id.calls2_view).setVisibility(
@@ -589,8 +589,8 @@ class Updater extends AsyncTask<Void, Void, Integer[]> {
 				((TextView) this.callmeter.findViewById(R.id.calls1_in_))
 						.setText(String.format(stringInCalls, ""));
 				((TextView) this.callmeter.findViewById(R.id.calls1_out_))
-						.setText(String.format(this.context
-								.getString(R.string.out_calls), ""));
+						.setText(String.format(
+								this.context.getString(R.string.out_calls), ""));
 			} else {
 				((TextView) this.callmeter.findViewById(R.id.calls1_in_))
 						.setText(String.format(stringInCalls, namePlan1));
@@ -605,9 +605,9 @@ class Updater extends AsyncTask<Void, Void, Integer[]> {
 
 				this.pbCalls2.setProgress(0);
 				this.pbCalls2.setIndeterminate(false);
-				v = setVisableIfSet(this.prefs.getString(PREFS_PLAN2_FREEMIN,
-						null), this.prefs.getBoolean(PREFS_PLAN2_T_FREE_CALLS,
-						false));
+				v = setVisableIfSet(
+						this.prefs.getString(PREFS_PLAN2_FREEMIN, null),
+						this.prefs.getBoolean(PREFS_PLAN2_T_FREE_CALLS, false));
 				this.pbCalls2.setVisibility(v);
 				this.callmeter.findViewById(R.id.calls2_view).setVisibility(
 						View.VISIBLE);
@@ -624,8 +624,8 @@ class Updater extends AsyncTask<Void, Void, Integer[]> {
 				((TextView) this.callmeter.findViewById(R.id.sms1_in_))
 						.setText(String.format(stringInSMS, ""));
 				((TextView) this.callmeter.findViewById(R.id.sms1_out_))
-						.setText(String.format(this.context
-								.getString(R.string.out_sms), ""));
+						.setText(String.format(
+								this.context.getString(R.string.out_sms), ""));
 			} else {
 				((TextView) this.callmeter.findViewById(R.id.sms1_in_))
 						.setText(String.format(stringInSMS, namePlan1));
@@ -640,9 +640,9 @@ class Updater extends AsyncTask<Void, Void, Integer[]> {
 
 				this.pbSMS2.setProgress(0);
 				this.pbSMS2.setIndeterminate(false);
-				v = setVisableIfSet(this.prefs.getString(PREFS_PLAN2_FREESMS,
-						null), this.prefs.getBoolean(PREFS_PLAN2_T_FREE_SMS,
-						false));
+				v = setVisableIfSet(
+						this.prefs.getString(PREFS_PLAN2_FREESMS, null),
+						this.prefs.getBoolean(PREFS_PLAN2_T_FREE_SMS, false));
 				this.pbSMS2.setVisibility(v);
 				this.callmeter.findViewById(R.id.sms2_view).setVisibility(
 						View.VISIBLE);
@@ -818,14 +818,14 @@ class Updater extends AsyncTask<Void, Void, Integer[]> {
 		if (this.prefs.getBoolean(PREFS_PLAN1_T_FREE_CALLS, false)) {
 			free1 = -1;
 		} else {
-			free1 = Utils.parseInt(this.prefs.getString(PREFS_PLAN1_FREEMIN,
-					"0"), 0);
+			free1 = Utils.parseInt(
+					this.prefs.getString(PREFS_PLAN1_FREEMIN, "0"), 0);
 		}
 		if (this.prefs.getBoolean(PREFS_PLAN2_T_FREE_CALLS, false)) {
 			free2 = -1;
 		} else {
-			free2 = Utils.parseInt(this.prefs.getString(PREFS_PLAN2_FREEMIN,
-					"0"), 0);
+			free2 = Utils.parseInt(
+					this.prefs.getString(PREFS_PLAN2_FREEMIN, "0"), 0);
 		}
 		// walk through log
 		if (cur != null && cur.moveToFirst()) {
@@ -1004,14 +1004,14 @@ class Updater extends AsyncTask<Void, Void, Integer[]> {
 		if (this.prefs.getBoolean(PREFS_PLAN1_T_FREE_SMS, false)) {
 			free1 = -1;
 		} else {
-			free1 = Utils.parseInt(this.prefs.getString(PREFS_PLAN1_FREESMS,
-					"0"), 0);
+			free1 = Utils.parseInt(
+					this.prefs.getString(PREFS_PLAN1_FREESMS, "0"), 0);
 		}
 		if (this.prefs.getBoolean(PREFS_PLAN2_T_FREE_SMS, false)) {
 			free2 = -1;
 		} else {
-			free2 = Utils.parseInt(this.prefs.getString(PREFS_PLAN2_FREESMS,
-					"0"), 0);
+			free2 = Utils.parseInt(
+					this.prefs.getString(PREFS_PLAN2_FREESMS, "0"), 0);
 		}
 
 		int iSMSIn = this.prefs.getInt(PREFS_SMS_ALL_IN, 0);
@@ -1124,8 +1124,9 @@ class Updater extends AsyncTask<Void, Void, Integer[]> {
 			// merge sms into calls.
 			final boolean mergeToPlan1 = this.plansMergeCalls
 					|| this.prefs.getBoolean(PREFS_MERGE_SMS_PLAN1, true);
-			final int secondsForSMS = Utils.parseInt(this.prefs.getString(
-					PREFS_MERGE_SMS_TO_CALLS_SECONDS, "0"), 60);
+			final int secondsForSMS = Utils
+					.parseInt(this.prefs.getString(
+							PREFS_MERGE_SMS_TO_CALLS_SECONDS, "0"), 60);
 			int i = RESULT_CALLS1_VAL; // plan 1 number of seconds
 			int j = RESULT_CALLS1_IN;
 			int callsInCount = this.callsInCount1;

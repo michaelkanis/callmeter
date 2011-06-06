@@ -1,14 +1,14 @@
 /**
  * 
  */
-package de.ub0r.de.android.callMeterNG;
+package de.ub0r.android.callmeter;
 
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
-import android.content.SharedPreferences;
 import android.content.DialogInterface.OnClickListener;
+import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
 import android.preference.PreferenceManager;
 

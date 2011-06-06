@@ -17,7 +17,7 @@
  * this program; If not, see <http://www.gnu.org/licenses/>.
  */
 
-package de.ub0r.de.android.callMeterNG;
+package de.ub0r.android.callmeter;
 
 import android.app.AlarmManager;
 import android.app.PendingIntent;

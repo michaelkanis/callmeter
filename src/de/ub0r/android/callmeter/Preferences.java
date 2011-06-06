@@ -1,4 +1,4 @@
-package de.ub0r.de.android.callMeterNG;
+package de.ub0r.android.callmeter;
 
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -22,16 +22,13 @@ public class Preferences extends PreferenceActivity implements
 	private Preference prefMergeToPlan1 = null;
 	/** {@link Preference}: plan1 - cost per call. */
 	private Preference prefPlan1CostPerCall = null;
-	/** {@link Preference}: plan2 - cost per call. */
-	private Preference prefPlan2CostPerCall = null;
+
 	/** {@link Preferences}: excluded calls to plan 1. */
 	private Preference prefExcludeCallsToPlan1 = null;
-	/** {@link Preferences}: excluded calls to plan 2. */
-	private Preference prefExcludeCallsToPlan2 = null;
+
 	/** {@link Preferences}: excluded sms to plan 1. */
 	private Preference prefExcludeSmsToPlan1 = null;
-	/** {@link Preferences}: excluded sms to plan 2. */
-	private Preference prefExcludeSmsToPlan2 = null;
+
 	/** Preference's name: theme. */
 	private static final String PREFS_THEME = "theme";
 	/** Theme: black. */
@@ -99,34 +96,27 @@ public class Preferences extends PreferenceActivity implements
 				.findPreference(Updater.PREFS_MERGE_SMS_PLAN1);
 		this.prefPlan1CostPerCall = this
 				.findPreference(Updater.PREFS_PLAN1_COST_PER_CALL);
-		this.prefPlan2CostPerCall = this
-				.findPreference(Updater.PREFS_PLAN2_COST_PER_CALL);
 		this.prefExcludeCallsToPlan1 = this
 				.findPreference(ExcludePeople.PREFS_EXCLUDE_PEOPLE_CALLS_PLAN1);
-		this.prefExcludeCallsToPlan2 = this
-				.findPreference(ExcludePeople.PREFS_EXCLUDE_PEOPLE_CALLS_PLAN2);
 		this.prefExcludeSmsToPlan1 = this
 				.findPreference(ExcludePeople.PREFS_EXCLUDE_PEOPLE_SMS_PLAN1);
-		this.prefExcludeSmsToPlan2 = this
-				.findPreference(ExcludePeople.PREFS_EXCLUDE_PEOPLE_SMS_PLAN2);
 
 		// run check on create!
 		this.onSharedPreferenceChanged(prefs, Updater.PREFS_SPLIT_PLANS);
 		this.onSharedPreferenceChanged(prefs, Updater.PREFS_PLAN1_FREEMIN);
 		this.onSharedPreferenceChanged(prefs, Updater.PREFS_PLAN2_FREEMIN);
-		Market.setOnPreferenceClickListener(this, this
-				.findPreference("more_apps"), null, "Felix+Bechstein",
+		Market.setOnPreferenceClickListener(this,
+				this.findPreference("more_apps"), null, "Felix+Bechstein",
 				"http://code.google.com/u/felix.bechstein/");
 		Preference p = this.findPreference("send_logs");
 		if (p != null) {
 			p.setOnPreferenceClickListener(// .
-					new Preference.OnPreferenceClickListener() {
-						public boolean onPreferenceClick(
-								final Preference preference) {
-							Log.collectAndSendLog(Preferences.this);
-							return true;
-						}
-					});
+			new Preference.OnPreferenceClickListener() {
+				public boolean onPreferenceClick(final Preference preference) {
+					Log.collectAndSendLog(Preferences.this);
+					return true;
+				}
+			});
 		}
 	}
 
@@ -158,9 +148,7 @@ public class Preferences extends PreferenceActivity implements
 			this.prefMergeSMStoCalls.setEnabled(!b0 || b1);
 			this.prefMergeToPlan1.setEnabled(b0 && b1 && !b2 && b3);
 			this.prefExcludeCallsToPlan1.setEnabled(b0 && b11 && !b2);
-			this.prefExcludeCallsToPlan2.setEnabled(b0 && b11 && !b2);
 			this.prefExcludeSmsToPlan1.setEnabled(b0 && b12 && !b1);
-			this.prefExcludeSmsToPlan2.setEnabled(b0 && b12 && !b1);
 		} else if (key.equals(Updater.PREFS_PLAN1_FREEMIN)) {
 			final String s = sharedPreferences.getString(
 					Updater.PREFS_PLAN1_FREEMIN, "");
@@ -169,8 +157,6 @@ public class Preferences extends PreferenceActivity implements
 		} else if (key.equals(Updater.PREFS_PLAN2_FREEMIN)) {
 			final String s = sharedPreferences.getString(
 					Updater.PREFS_PLAN2_FREEMIN, "");
-			this.prefPlan2CostPerCall.setEnabled(s.length() == 0
-					|| s.equals("0"));
 		}
 	}
 }

@@ -16,7 +16,7 @@
  * You should have received a copy of the GNU General Public License along with
  * this program; If not, see <http://www.gnu.org/licenses/>.
  */
-package de.ub0r.de.android.callMeterNG;
+package de.ub0r.android.callmeter;
 
 import java.io.IOException;
 import java.util.Calendar;
@@ -173,8 +173,8 @@ class UpdaterData extends AsyncTask<Void, Void, Long[]> {
 			this.callmeter.findViewById(R.id.data_out_layout).setVisibility(v);
 			this.pbBillDate.setVisibility(v);
 			if (v == View.VISIBLE) {
-				v = Updater.setVisableIfSet(this.prefs.getString(
-						PREFS_DATA_LIMIT, null), false);
+				v = Updater.setVisableIfSet(
+						this.prefs.getString(PREFS_DATA_LIMIT, null), false);
 			}
 
 			this.dataBillDate = "?";
@@ -220,8 +220,8 @@ class UpdaterData extends AsyncTask<Void, Void, Long[]> {
 					+ prettyBytes(currentIn);
 			this.dataOut = prettyBytes(currentOut - preBillingOut) + " | "
 					+ prettyBytes(currentOut);
-			final int limit = Utils.parseInt(this.prefs.getString(
-					PREFS_DATA_LIMIT, null), 0);
+			final int limit = Utils.parseInt(
+					this.prefs.getString(PREFS_DATA_LIMIT, null), 0);
 
 			ret[0] = thisBillingIn;
 			if (!this.prefs.getBoolean(PREFS_DATA_INCOMING_ONLY, false)) {

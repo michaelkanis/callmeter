@@ -22,7 +22,8 @@
 	android:versionCode="2053" android:installLocation="auto">
 	<application android:name="de.ub0r.android.callmeter.CallMeterApp" android:icon="@drawable/sym_call_outgoing"
 		android:label="@string/app_name">
-		<activity android:name="CallMeter" android:label="@string/app_name"
+		
+		<activity android:name="Callmeter" android:label="@string/app_name"
 			android:configChanges="orientation|keyboardHidden"
 			android:launchMode="singleTop">
 			<intent-filter>
@@ -30,6 +31,7 @@
 				<category android:name="android.intent.category.LAUNCHER" />
 			</intent-filter>
 		</activity>
+		
 		<activity android:name="Preferences" />
 		<activity android:name="ExcludePeople" />
 		<activity android:name="ResetData" />
@@ -37,6 +39,8 @@
 		<activity android:name="de.ub0r.android.lib.Changelog"
 			android:configChanges="orientation|keyboardHidden"
 			android:windowSoftInputMode="adjustResize" />
+			
+		<!-- Is this really necessary? Updating is done onResume of the CallMeter activity nevertheless. -->
 		<receiver android:name="de.ub0r.android.callmeter.CMBroadcastReceiver">
 			<intent-filter>
 				<action android:name="android.intent.action.BOOT_COMPLETED" />
@@ -47,7 +51,9 @@
 			</intent-filter>
 		</receiver>
 	</application>
+	
 	<uses-sdk android:minSdkVersion="3" android:targetSdkVersion="10" />
+	
 	<supports-screens android:smallScreens="true"
 		android:normalScreens="true" android:largeScreens="true"
 		android:anyDensity="true" />
@@ -62,10 +68,22 @@
 		android:required="false" />
 	<uses-feature android:name="android.hardware.telephony"
 		android:required="false" />
+	
+	<!-- Used for excluding phone numbers from the calculation -->
 	<uses-permission android:name="android.permission.READ_CONTACTS" />
+	
+	<!-- Used for calculating the number of SMS -->
 	<uses-permission android:name="android.permission.READ_SMS" />
+	
+	<!-- TODO: Used for ??? -->
 	<uses-permission android:name="android.permission.READ_PHONE_STATE" />
+	
+	<!-- Used for updating the data right after boot. TODO: Is this necessary? -->
 	<uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+	
+	<!-- TODO: Used for ??? -->
 	<uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+	
+	<!-- Used for updating the data after SMS receival. TODO: Is this necessary? -->
 	<uses-permission android:name="android.permission.RECEIVE_SMS" />
 </manifest> 

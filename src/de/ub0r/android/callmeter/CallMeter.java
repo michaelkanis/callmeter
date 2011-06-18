@@ -28,7 +28,6 @@ import android.view.MenuItem;
 import android.view.Window;
 import android.widget.TextView;
 import de.ub0r.android.lib.Changelog;
-import de.ub0r.android.lib.DonationHelper;
 import de.ub0r.android.lib.Utils;
 
 /**
@@ -46,9 +45,6 @@ public class CallMeter extends Activity {
 	/** Preference's name: show short title for data. */
 	private static final String PREFS_DATA_SHORT = "data_short";
 
-	/** Display ads? */
-	private static boolean prefsNoAds;
-
 	/**
 	 * {@inheritDoc}
 	 */
@@ -62,8 +58,6 @@ public class CallMeter extends Activity {
 
 		Changelog.showChangelog(this);
 		// TODO: Changelog.showNotes(this, null, null, null);
-
-		prefsNoAds = DonationHelper.hideAds(this);
 
 		TextView tv = (TextView) this.findViewById(R.id.calls_);
 		Preferences.textSizeMedium = tv.getTextSize();

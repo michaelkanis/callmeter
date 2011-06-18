@@ -20,10 +20,11 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
 	package="de.ub0r.android.callmeter" android:versionName="2.3.17.5"
 	android:versionCode="2053" android:installLocation="auto">
+	
 	<application android:name="de.ub0r.android.callmeter.CallMeterApp" android:icon="@drawable/sym_call_outgoing"
 		android:label="@string/app_name">
 		
-		<activity android:name="Callmeter" android:label="@string/app_name"
+		<activity android:name="CallMeter" android:label="@string/app_name"
 			android:configChanges="orientation|keyboardHidden"
 			android:launchMode="singleTop">
 			<intent-filter>

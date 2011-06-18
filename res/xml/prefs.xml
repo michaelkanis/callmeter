@@ -18,12 +18,6 @@
 		not, see <http://www.gnu.org/licenses/>.
 	-->
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
-	<PreferenceCategory android:title="@string/appearance_">
-		<ListPreference android:key="morelocale" android:title="@string/custom_language_"
-			android:summary="@string/custom_language_hint" android:entries="@array/lang_"
-			android:entryValues="@array/lang_values" />
-	</PreferenceCategory>
-
 	<PreferenceCategory android:title="@string/settings">
 
 		<!-- calls -->
@@ -136,18 +130,10 @@
 			<PreferenceCategory android:title="@string/calls">
 				<CheckBoxPreference android:key="exclude_people_calls"
 					android:title="@string/exclude_people_calls_" android:defaultValue="true" />
-				<CheckBoxPreference android:key="exclude_people_to_plan1"
-					android:title="@string/exclude_people_to_plan1_" android:summary="@string/exclude_people_calls_to_plan1_hint" />
-				<CheckBoxPreference android:key="exclude_people_to_plan2"
-					android:title="@string/exclude_people_to_plan2_" android:summary="@string/exclude_people_calls_to_plan2_hint" />
 			</PreferenceCategory>
 			<PreferenceCategory android:title="@string/sms">
 				<CheckBoxPreference android:key="exclude_people_sms"
 					android:title="@string/exclude_people_sms_" />
-				<CheckBoxPreference android:key="exclude_people_sms_to_plan1"
-					android:title="@string/exclude_people_to_plan1_" android:summary="@string/exclude_people_sms_to_plan1_hint" />
-				<CheckBoxPreference android:key="exclude_people_sms_to_plan2"
-					android:title="@string/exclude_people_to_plan2_" android:summary="@string/exclude_people_sms_to_plan2_hint" />
 			</PreferenceCategory>
 		</PreferenceScreen>
 		<PreferenceScreen android:title="@string/reset_data_"

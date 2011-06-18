@@ -23,12 +23,6 @@ public class Preferences extends PreferenceActivity implements
 	/** {@link Preference}: plan1 - cost per call. */
 	private Preference prefPlan1CostPerCall = null;
 
-	/** {@link Preferences}: excluded calls to plan 1. */
-	private Preference prefExcludeCallsToPlan1 = null;
-
-	/** {@link Preferences}: excluded sms to plan 1. */
-	private Preference prefExcludeSmsToPlan1 = null;
-
 	/** Preference's name: theme. */
 	private static final String PREFS_THEME = "theme";
 	/** Theme: black. */
@@ -96,10 +90,6 @@ public class Preferences extends PreferenceActivity implements
 				.findPreference(Updater.PREFS_MERGE_SMS_PLAN1);
 		this.prefPlan1CostPerCall = this
 				.findPreference(Updater.PREFS_PLAN1_COST_PER_CALL);
-		this.prefExcludeCallsToPlan1 = this
-				.findPreference(ExcludePeople.PREFS_EXCLUDE_PEOPLE_CALLS_PLAN1);
-		this.prefExcludeSmsToPlan1 = this
-				.findPreference(ExcludePeople.PREFS_EXCLUDE_PEOPLE_SMS_PLAN1);
 
 		// run check on create!
 		this.onSharedPreferenceChanged(prefs, Updater.PREFS_SPLIT_PLANS);
@@ -140,23 +130,14 @@ public class Preferences extends PreferenceActivity implements
 					Updater.PREFS_MERGE_PLANS_CALLS, false);
 			final boolean b3 = sharedPreferences.getBoolean(
 					Updater.PREFS_MERGE_SMS_TO_CALLS, false);
-			final boolean b11 = sharedPreferences.getBoolean(
-					ExcludePeople.PREFS_EXCLUDE_PEOPLE_CALLS_ENABLE, true);
-			final boolean b12 = sharedPreferences.getBoolean(
-					ExcludePeople.PREFS_EXCLUDE_PEOPLE_SMS_ENABLE, false);
 
 			this.prefMergeSMStoCalls.setEnabled(!b0 || b1);
 			this.prefMergeToPlan1.setEnabled(b0 && b1 && !b2 && b3);
-			this.prefExcludeCallsToPlan1.setEnabled(b0 && b11 && !b2);
-			this.prefExcludeSmsToPlan1.setEnabled(b0 && b12 && !b1);
 		} else if (key.equals(Updater.PREFS_PLAN1_FREEMIN)) {
 			final String s = sharedPreferences.getString(
 					Updater.PREFS_PLAN1_FREEMIN, "");
 			this.prefPlan1CostPerCall.setEnabled(s.length() == 0
 					|| s.equals("0"));
-		} else if (key.equals(Updater.PREFS_PLAN2_FREEMIN)) {
-			final String s = sharedPreferences.getString(
-					Updater.PREFS_PLAN2_FREEMIN, "");
 		}
 	}
 }

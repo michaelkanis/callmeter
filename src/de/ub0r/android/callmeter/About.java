@@ -1,3 +1,5 @@
+// @ConQAT.Rating YELLOW Hash: 57F6C40D18C4B5D70ECF757498E3DA4C
+
 /*
  * Copyright (C) 2010 Felix Bechstein
  * 
